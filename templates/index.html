@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'components/header.html' %}
+
+<div class="nav-abas">
+    <button class="btn-aba ativa" id="aba-scanner" onclick="mudarAba('scanner')">Scanner & Estoque</button>
+    <button class="btn-aba" id="aba-historico" onclick="mudarAba('historico')">Histórico</button>
+
+    {% if cargo == 'admin' %}
+    <button class="btn-aba" id="aba-usuarios" onclick="mudarAba('usuarios')">Acessos</button>
+    {% endif %}
+</div>
+
+{% include 'components/scanner.html' %}
+{% include 'components/historico.html' %}
+
+{% if cargo == 'admin' %}
+{% include 'components/usuarios.html' %}
+{% endif %}
+
+{% endblock %}

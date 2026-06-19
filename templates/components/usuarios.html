@@ -1,0 +1,42 @@
+<main id="tela-usuarios" style="display: none; padding: 0 20px;">
+    <div style="display: flex; gap: 20px; width: 100%;">
+        
+        <div class="tabela-container" style="flex: 2; margin: 0;">
+            <h3 style="margin-bottom: 15px; color: white;">Usuários Cadastrados</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Nível de Acesso</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="corpo-tabela-usuarios">
+                    <tr><td colspan="4" class="data-vazia">Carregando usuários...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="coluna-dir" style="flex: 1;">
+            <h3>Novo Usuário</h3>
+            <div class="form-group">
+                <label>Nome (Login)</label>
+                <input type="text" id="user-nome" placeholder="Ex: JoaoSilva">
+            </div>
+            <div class="form-group">
+                <label>Senha</label>
+                <input type="password" id="user-senha" placeholder="***">
+            </div>
+            <div class="form-group">
+                <label>Nível de Acesso</label>
+                <select id="user-cargo">
+                    <option value="usuario">Aluno/Comum (Apenas Retira/Devolve)</option>
+                    <option value="admin">Administrador (Acesso Total)</option>
+                </select>
+            </div>
+            <button onclick="salvarUsuario()">Cadastrar Acesso</button>
+        </div>
+
+    </div>
+</main>

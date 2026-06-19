@@ -1,0 +1,45 @@
+   <main id="tela-scanner" style="display: flex;">
+        <div class="coluna-esq">
+            <div class="card-leitor">
+                <div class="foto-box">
+                    <span id="placeholder" style="font-size: 2.5rem;">?</span>
+                    <img src="" id="leitor-foto" style="display: none;">
+                </div>
+                <div class="info-bloco">
+                    <div style="color: #7B3FE4; font-weight: bold; font-size: 0.85rem;" id="leitor-tag">RFID: -- --
+                    </div>
+                    <h2 id="leitor-nome" style="font-size: 1.8rem;">Aguardando...</h2>
+                    <p id="p-status" style="display:none;">Status: <span id="leitor-status" class="badge-status"></span>
+                    </p>
+                    <p id="p-local" style="display:none;">Localização: <strong id="leitor-local"></strong></p>
+                    <p id="p-detalhes">Detalhes: <span id="leitor-detalhes">Passe a tag.</span></p>
+                    <button id="btn-movimentar"
+                        style="display: none; margin-top: 15px; font-size: 1.1rem; padding: 15px;"
+                        onclick="registrarMovimentacao()"></button>
+                </div>
+            </div>
+
+            <div style="background: #16161a; padding: 20px; border-radius: 12px; border: 1px solid #2a2a30; flex: 1;">
+                <h3>Equipamentos no Banco</h3>
+                <div class="grid-estoque" id="grid-produtos"></div>
+            </div>
+        </div>
+
+        {% if cargo == 'admin' %}
+        <div class="coluna-dir">
+            <h3>Gerenciar Item</h3>
+            <div class="form-group"><label>ID da Tag RFID</label><input type="text" id="form-tag" readonly></div>
+            <div class="form-group"><label>Nome do Equipamento</label><input type="text" id="form-nome"></div>
+            <div class="form-group"><label>Status do Item</label>
+                <select id="form-status">
+                    <option value="Ativo">Ativo</option>
+                    <option value="Inativo">Inativo</option>
+                </select>
+            </div>
+            <div class="form-group"><label>Localização</label><input type="text" id="form-localizacao"></div>
+            <div class="form-group"><label>Detalhes</label><textarea id="form-detalhes" rows="3"></textarea></div>
+            <div class="form-group"><label>Foto</label><input type="file" id="form-foto"></div>
+            <button onclick="salvarProduto()">Salvar no Banco</button>
+        </div>
+        {% endif %}
+    </main>

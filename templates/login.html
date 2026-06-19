@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Acesso - Espaço Maker</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { 
+            background-color: #0c0c0c; 
+            color: #fff; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+        }
+        .login-box {
+            background: #16161a;
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #2a2a30;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        .login-box h2 { margin-bottom: 5px; color: #7B3FE4; }
+        .login-box p { color: #a0a0aa; margin-bottom: 25px; font-size: 0.9rem; }
+        
+        .form-group { text-align: left; margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; color: #a0a0aa; font-size: 0.85rem; }
+        input { 
+            width: 100%; padding: 12px; border-radius: 6px; 
+            border: 1px solid #3a3a42; background: #0c0c0c; color: white; 
+        }
+        input:focus { outline: none; border-color: #7B3FE4; }
+        
+        button { 
+            width: 100%; background: #7B3FE4; color: white; 
+            border: none; padding: 12px; border-radius: 6px; 
+            font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 1rem;
+        }
+        button:hover { background: #622bc6; }
+        
+        #msg-erro { color: #ff8585; font-size: 0.85rem; margin-top: 15px; display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="login-box">
+        <h2>Inventário Maker</h2>
+        <p>Faça login para acessar o sistema.</p>
+        
+        <div class="form-group">
+            <label>Usuário</label>
+            <input type="text" id="usuario" placeholder="Seu nome de acesso" autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label>Senha</label>
+            <input type="password" id="senha" placeholder="Sua senha">
+        </div>
+        
+        <button onclick="fazerLogin()">Entrar</button>
+        
+        <div id="msg-erro">Usuário ou senha incorretos.</div>
+    </div>
+
+    <script>
+        async function fazerLogin() {
+            const usuario = document.getElementById('usuario').value;
+            const senha = document.getElementById('senha').value;
+            const msgErro = document.getElementById('msg-erro');
+
+            if(!usuario || !senha) {
+                msgErro.innerText = "Preencha todos os campos.";
+                msgErro.style.display = 'block';
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ usuario, senha })
+                });
+
+                const dados = await res.json();
+
+                if (res.ok) {
+                    // Login deu certo! Redireciona para a tela inicial
+                    window.location.href = '/';
+                } else {
+                    // Erro (senha errada, etc)
+                    msgErro.innerText = dados.erro || "Erro de conexão.";
+                    msgErro.style.display = 'block';
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        // Permitir dar "Enter" para logar
+        document.addEventListener("keypress", function(e) {
+            if(e.key === 'Enter') { fazerLogin(); }
+        });
+    </script>
+</body>
+</html>
