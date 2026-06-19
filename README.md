@@ -4,7 +4,7 @@ Sistema Fullstack com integração de hardware (RFID) para gestão de ativos fí
 
 ## DEMO 📸:
 
-
+https://github.com/user-attachments/assets/4dcf6af3-1cb7-4307-825d-dd4e1a78b90f
 
 ## 🚀 Tecnologias
 - **Back-end:** Python com Flask.
