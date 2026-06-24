@@ -9,11 +9,10 @@ def criar_primeiro_usuario():
     cursor.execute('''
         INSERT INTO usuarios (nome, senha, cargo) 
         VALUES (?, ?, ?)
-    ''', ('Icaro', '123', 'admin'))
+    ''', ('Pessoa', '123', 'admin'))
     
     conn.commit()
     conn.close()
-    print("Administrador Icaro criado com sucesso!")
-
+    print("Administrador Pessoa criado com sucesso!")
 if __name__ == '__main__':
     criar_primeiro_usuario()
