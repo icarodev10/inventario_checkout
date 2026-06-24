@@ -35,3 +35,5 @@ if __name__ == '__main__':
     print("Iniciando serviços...")
     threading.Thread(target=iniciar_escuta_serial, daemon=True).start()
     app.run(debug=True, use_reloader=False)
+
+

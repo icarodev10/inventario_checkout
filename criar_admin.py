@@ -16,3 +16,4 @@ def criar_primeiro_usuario():
     print("Administrador Pessoa criado com sucesso!")
 if __name__ == '__main__':
     criar_primeiro_usuario()
+
